@@ -1,0 +1,72 @@
+#board{
+  width: 400px;
+  height: 400px;
+
+  /* this will center the board */
+  position: absolute;
+  top:0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+
+}
+
+#message{
+  font-size: 16px;
+  height: 30px;
+}
+
+.grid-container {
+    
+    display: grid;
+    grid-template-columns: auto auto auto;
+    background-color: #2196F3;
+    padding: 10px;
+    width: 300px;
+    height: 300px;
+
+    
+  }
+  .grid-item {
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid #000000cc;
+    padding: 20px;
+    font-size: 30px;
+    text-align: center;
+    width: 58px;
+    height: 58px;
+    cursor: pointer; 
+  }
+
+  button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+  }
+
+  button,.grid-container {
+    /* box shadow */
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  }
+
+  #win{
+    font-size: large;
+    color:greenyellow;
+    font-weight: bold;
+  }
+
+  #loss{
+    font-size: large;
+    color:red;
+    font-weight: bold;
+  }
