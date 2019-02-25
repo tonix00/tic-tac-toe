@@ -12,7 +12,7 @@ export default class Box
     userMove(){    
         
         // apply user move
-        this.div.innerHTML="X";
+        this.div.innerHTML="x";
         this.disableDivTag(); 
         this.value =1;
         

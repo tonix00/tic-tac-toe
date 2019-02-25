@@ -24,7 +24,7 @@ export default class VirtualPlayer
         if(moveIndex >=0 )
             return this.board.boxes[moveIndex];
 
-        // if center box taken?
+        // if center box not taken?
         if(this.board.boxes[4].value==0)
             return this.board.boxes[4];
         
@@ -56,8 +56,7 @@ export default class VirtualPlayer
                 if(this.board.boxes[boxIndex].value==counterMove)
                     counterMoveCount++;
                 if(this.board.boxes[boxIndex].value==0)
-                    cleanSlotIndex = boxIndex;
-                
+                    cleanSlotIndex = boxIndex;      
             }  
             
             if(moveCount==2 && counterMoveCount==0){

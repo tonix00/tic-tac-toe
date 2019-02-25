@@ -42,11 +42,13 @@ export default class Board
             }  
             if(userMoveCount==3){
                 this.message("<span id='win'>You win! Congratulation.</span>");
+                this.blink(1);
                 this.endGame();
                 hasWinner = 1;
                 break;
             }else if(passMoveCount==3){
                 this.message("<span id='loss'>You lose! Try again.</span>");
+                this.blink(2);
                 this.endGame();
                 hasWinner = 1;
                 break;
@@ -82,6 +84,8 @@ export default class Board
             this.boxes[key].div.style.pointerEvents = "auto";
             this.boxes[key].div.innerHTML = "";
             this.boxes[key].div.classList.remove("mystyle");
+            this.boxes[key].div.classList.remove("blinkWinner");
+            this.boxes[key].div.classList.remove("blinkLoser");
         }
         this.message("Let's start. You go first.");
     }
@@ -95,6 +99,33 @@ export default class Board
             }
         }
         return draw;
+    }
+
+    blink(move){
+
+        let blink = "blinkWinner";
+        if(move==2)
+            blink = "blinkLoser";
+
+        for(let key in this.winningCombinations){
+            let toBlinkIndex = Array();
+            let winner=0;
+            for(let index in this.winningCombinations[key]){
+                let boxIndex = this.winningCombinations[key][index]-1;
+                if(this.boxes[boxIndex].value==move){
+                    toBlinkIndex.push(boxIndex);
+                    winner++;
+                }
+            } 
+
+            if(winner==3){
+                for(let index in toBlinkIndex){
+                    let key = toBlinkIndex[index];
+                    this.boxes[key].div.classList.add(blink);
+                }
+                break;
+            }
+        }
     }
     
 }

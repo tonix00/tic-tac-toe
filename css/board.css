@@ -82,3 +82,27 @@
     color:red;
     font-weight: bold;
   }
+
+  .blinkLoser { 
+    font-weight: bold;
+    color: red;
+    animation:blink 1s linear infinite alternate 1s;  
+  }
+
+  .blinkWinner { 
+    font-weight: bold;
+    color:green;
+    animation:blink 1s linear infinite alternate 1s;  
+  }
+  
+  @keyframes blink {
+    0%,80% {
+      background-color: rgba(255, 255, 255, 0.8);
+    }
+    90% {
+      background-color: rgba(193, 228, 248, 0.8);
+    }
+    100% {
+      background-color: rgba(156, 214, 248, 0.8);
+    }
+  }
