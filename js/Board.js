@@ -46,7 +46,7 @@ export default class Board
                 hasWinner = 1;
                 break;
             }else if(passMoveCount==3){
-                this.message("<span id='loss'>You loss! Try again.</span>");
+                this.message("<span id='loss'>You lose! Try again.</span>");
                 this.endGame();
                 hasWinner = 1;
                 break;
