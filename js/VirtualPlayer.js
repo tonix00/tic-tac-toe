@@ -12,56 +12,73 @@ export default class VirtualPlayer
 
     analyze(){
 
-        let myMove = 0;
-        for(let key in this.board.winningCombinations){
+        let moveIndex = -1;
 
-            let userMoveCount = 0;
-            let passMoveCount = 0;
-            let myMoveIndex = Array();
+        //offense move
+        moveIndex = this.analyze_detail(1,2);
+        if(moveIndex >=0 )
+            return this.board.boxes[moveIndex];
+        
+        //defense move
+        moveIndex = this.analyze_detail(2,1);
+        if(moveIndex >=0 )
+            return this.board.boxes[moveIndex];
+
+        // if center box taken?
+        if(this.board.boxes[4].value==0)
+            return this.board.boxes[4];
+        
+        
+        // just get blank div
+        for(let key in this.board.boxes){
+            if(this.board.boxes[key].value==0){
+                return this.board.boxes[key];
+            }
+        }
+    }
+
+    analyze_detail(counterMove,move){
+
+        let moveIndex = -1;
+
+        for(let key in this.board.winningCombinations){
+            
+            let moveCount = 0;
+            let counterMoveCount = 0;
+            let cleanSlotIndex = -1;
 
             for(let index in this.board.winningCombinations[key]){
+
                 let boxIndex = this.board.winningCombinations[key][index]-1;
 
+                if(this.board.boxes[boxIndex].value==move)
+                    moveCount++;
+                if(this.board.boxes[boxIndex].value==counterMove)
+                    counterMoveCount++;
                 if(this.board.boxes[boxIndex].value==0)
-                    myMoveIndex.push(boxIndex);
-                else if(this.board.boxes[boxIndex].value==1)
-                    userMoveCount++;
-                else if(this.board.boxes[boxIndex].value==2)
-                    passMoveCount++;
+                    cleanSlotIndex = boxIndex;
+                
             }  
-            myMove = myMoveIndex[0];
-
-            if(userMoveCount==0 && passMoveCount==2){  // offense
+            
+            if(moveCount==2 && counterMoveCount==0){
+                moveIndex = cleanSlotIndex;
                 break;
-            }else if(userMoveCount==2 && passMoveCount==0){  // defense
-                break;
-            }else if(userMoveCount==3){
-                break;
-            }else if(passMoveCount==3){
-                break;
-            }       
+            } 
         }
-        return this.board.boxes[myMove];
+        return moveIndex;
     }
 
     myMoveAgainst(){
         let box = this.analyze();
         
-        if(typeof box !== "undefined"){
-            box.disableDivTag();
-            box.value=2;
-            box.div.innerHTML="O";
-        }else{
-            for(let key in this.board.boxes){
-                if(this.board.boxes[key].value==0){
-                    this.board.boxes[key].disableDivTag(); 
-                    this.board.boxes[key].value = 2; 
-                    this.board.boxes[key].div.innerHTML="O";
-                    break;
-                }
-            }
-        }
+        box.disableDivTag();
+        box.value=2;
 
+        setTimeout(function(){
+            box.div.innerHTML="O";
+            box.div.classList.add("mystyle");
+        }, 300);
+       
         if(this.board.checkWinner()){
             this.board.endGame();
         }

@@ -81,6 +81,7 @@ export default class Board
             this.boxes[key].value=0;
             this.boxes[key].div.style.pointerEvents = "auto";
             this.boxes[key].div.innerHTML = "";
+            this.boxes[key].div.classList.remove("mystyle");
         }
         this.message("Let's start. You go first.");
     }

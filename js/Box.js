@@ -11,13 +11,16 @@ export default class Box
 
     userMove(){    
         
+        // apply user move
         this.div.innerHTML="X";
         this.disableDivTag(); 
         this.value =1;
         
+        // get the board 
         let board = Board.getInstance();
         let hasWinner = board.checkWinner();
 
+        // 0 means no winner yet
         if(hasWinner==0){
             let player = VirtualPlayer.getInstance();
             player.myMoveAgainst();

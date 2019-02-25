@@ -37,7 +37,19 @@
     width: 58px;
     height: 58px;
     cursor: pointer; 
+    
   }
+
+  .mystyle{
+    animation-name: mymove;
+    animation-duration: 2s;
+  }
+
+  /* Standard syntax */
+@keyframes mymove {
+  from {font-size: 50px;}
+  to {font-size: 30px;}
+}
 
   button {
     background-color: #4CAF50; /* Green */
